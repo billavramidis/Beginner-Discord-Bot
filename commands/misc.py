@@ -73,7 +73,10 @@ class Misc(commands.Cog):
         else:
             await ctx.send(f"I win! I picked {computer_choice}.")
 
-    @commands.slash_command(name = "joke", description = "Tells a random joke.")
+    @commands.slash_command(
+        name = "joke", 
+        description = "Tells a random joke."
+    )
     async def joke(ctx):
     
         url = "https://jokes-by-api-ninjas.p.rapidapi.com/v1/jokes"
