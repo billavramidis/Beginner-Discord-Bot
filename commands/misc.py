@@ -1,4 +1,6 @@
 from disnake.ext import commands
+from tokens import joke_token
+import requests
 import random
 
 class Misc(commands.Cog):
@@ -21,12 +23,12 @@ class Misc(commands.Cog):
         await ctx.send(f"You rolled a {dice}!")
 
     @commands.slash_command(
-        name = "dumb", 
-        description = "Tells you how dumb you are.",
+        name = "iq", 
+        description = "Tells you how much IQ you have.",
     )
-    async def dumb(ctx):
-        dumb_rate = random.randint(0,100)
-        await ctx.send(f"{ctx.author.name} you are {dumb_rate}% dumb.")
+    async def iq(ctx):
+        iq = random.randint(0,250)
+        await ctx.send(f"{ctx.author.name} you have {iq} IQ.")
 
     @commands.slash_command(
         name = "gay", 
@@ -71,28 +73,21 @@ class Misc(commands.Cog):
         else:
             await ctx.send(f"I win! I picked {computer_choice}.")
 
-    #!joke  
-    #Needs repairing later
-    # @bot.slash_command(name = "joke", description = "Tells a random joke.")
-    # async def joke(ctx):
-    #     url = "https://dad-jokes.p.rapidapi.com/random/joke"
+    @commands.slash_command(name = "joke", description = "Tells a random joke.")
+    async def joke(ctx):
+    
+        url = "https://jokes-by-api-ninjas.p.rapidapi.com/v1/jokes"
 
-    #     headers = {
-    #         "X-RapidAPI-Key" : joke_key,
-    #         "X-RapidAPI-Host": "dad-jokes.p.rapidapi.com"
-    #     }
+        headers = {
+            "X-RapidAPI-Key": joke_token,
+            "X-RapidAPI-Host": "jokes-by-api-ninjas.p.rapidapi.com"
+        }
 
-    #     response = requests.get(url, headers=headers)
-
-    #     json_response = response.json()
-    #     joke_body = json_response["body"]
-
-    #     def check(m):
-    #         return m.author == ctx.author and m.channel == ctx.channel
+        response = requests.get(url, headers=headers)
+        joke = response.json()[0]['joke']
         
-    #     await ctx.send(joke_body[0]["setup"])
-    #     await bot.wait_for('message', check=check)
-    #     await ctx.send(joke_body[0]["punchline"])
+        await ctx.send(joke)
+
 
 def setup(bot):
     bot.add_cog(Misc(bot))

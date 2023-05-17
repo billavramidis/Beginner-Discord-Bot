@@ -1,7 +1,7 @@
 import disnake
 from disnake.ext import commands
 
-from tokens import *
+from tokens import disc_token
 
 intents = disnake.Intents.default()
 intents.message_content = True
