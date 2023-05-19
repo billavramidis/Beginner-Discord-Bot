@@ -7,7 +7,6 @@ class Music(commands.Cog):
     @commands.slash_command(
         name = "connect", 
         description = "Connects to a voice channel.",
-        category = "Music"
     )
     async def connect(ctx):
         voice_state = ctx.author.voice
@@ -29,7 +28,6 @@ class Music(commands.Cog):
     @commands.slash_command(
         name = "disconnect", 
         description = "Disconnects from a voice channel.",
-        category = "Music"
     )
     async def disconnect(ctx):
         voice_client = ctx.guild.voice_client
