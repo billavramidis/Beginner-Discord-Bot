@@ -12,14 +12,22 @@ class Events(commands.Cog):
     #When a member joins the server
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        channel = self.bot.get_channel(1107384611690000516)
-        await channel.send(f"Welcome to the server {member.name}!")
+        guild = member.guild
+        system_channel = guild.system_channel
+        if system_channel is not None:
+            await system_channel.send(f"Welcome to {guild.name} {member.name}!")
+        else:
+            print("There isn't a system messages channel set.")
 
     #When a member leaves the server
     @commands.Cog.listener()
     async def on_member_remove(self, member):
-        channel = self.bot.get_channel(1107384611690000516)
-        await channel.send(f"We will miss you {member.name}!")
+        guild = member.guild
+        system_channel = guild.system_channel
+        if system_channel is not None:
+            await system_channel.send(f"{guild.name} will miss you {member.name}!")
+        else:
+            print("There isn't a system messages channel set.")
 
 def setup(bot):
     bot.add_cog(Events(bot))
