@@ -1,7 +1,7 @@
 from disnake.ext import commands
 
 class Music(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot) -> None:
         self.bot = bot
 
     @commands.slash_command(
