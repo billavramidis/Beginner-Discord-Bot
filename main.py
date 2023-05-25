@@ -17,4 +17,4 @@ for cog_branch in cog_tree:
     dir = cog_branch[0]
     bot.load_extensions(dir)
     
-bot.run(disc_token)
+bot.run(disc_token) 
