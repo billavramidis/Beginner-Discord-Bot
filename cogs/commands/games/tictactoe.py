@@ -17,7 +17,7 @@ class TicTacToe(commands.Cog):
         def check_first(first):
             return first.author == ctx.author and first.channel == channel
         
-        await ctx.send("Welcome to Tic-Tac-Toe! To play mention an other server member!")
+        await ctx.send("Welcome to Tic-Tac-Toe! To play mention an other server member or type 'exit' to exit the game!")
         message = await self.bot.wait_for("message", check=check_first)
         
         while True:
@@ -25,7 +25,7 @@ class TicTacToe(commands.Cog):
                 first_player = ctx.user
                 second_player = message.mentions[0]
                 if first_player == second_player:
-                    await ctx.send("You can't mention yourself! Mention someone else to continue or type 'exit' to exit!")
+                    await ctx.send("You can't mention yourself! Mention someone else to continue or type 'exit' to exit the game!")
                     message = await self.bot.wait_for("message", check=check_first)
                 else:
                     await ctx.send(f"{second_player.mention} do you want to play with {first_player.mention}?")
@@ -35,7 +35,7 @@ class TicTacToe(commands.Cog):
                 await ctx.send("You have successfully exited the game!")
                 break
             else:
-                await ctx.send("You need to mention someone to continue or type 'exit' to exit!")
+                await ctx.send("You need to mention someone to continue or type 'exit' to exit the game!")
                 message = await self.bot.wait_for("message", check=check_first)
 
 def setup(bot):
