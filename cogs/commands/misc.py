@@ -36,5 +36,13 @@ class Misc(commands.Cog):
         gay_rate = random.randint(0,100)
         await ctx.send(f"{ctx.author.name} you are {gay_rate}% gay.")
 
+    @commands.slash_command(
+        name="rate",
+        description="It gives you a rating from 1-10.",
+    )
+    async def rate(ctx):
+        rate = random.randint(0, 10)
+        await ctx.send(f"{ctx.author.name} you are a {rate}")
+
 def setup(bot):
     bot.add_cog(Misc(bot))
