@@ -4,6 +4,7 @@ class TicTacToe(commands.Cog):
     def __init__(self, bot) -> None:
         self.bot = bot
 
+    # Incomplete
     @commands.slash_command(
         name = "tictactoe",
         description = "You play Tic-Tac-Toe with someone."
